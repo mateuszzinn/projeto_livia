@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class TelaPadrao extends JFrame {
 
+	//teste GitHub
     public TelaPadrao(String titulo) {
         setTitle(titulo);
         setSize(650, 450);
