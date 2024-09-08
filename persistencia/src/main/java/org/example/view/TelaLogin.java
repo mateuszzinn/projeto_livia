@@ -15,16 +15,17 @@ import org.example.controller.GerenteController;
 import org.example.model.Produto;
 import org.example.utils.paths.Path;
 
-public class JanelaLogin extends TelaPadraoImagem {
+
+public class TelaLogin extends TelaPadrao {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    private JTextField tfEmail;
+    private JTextField tfLogin;
     private JPasswordField pfSenha;
 
-    public JanelaLogin() throws IOException {
+    public TelaLogin() throws IOException {
         super("Fazer Login", "Fazer Login");
         adicionarLabel();
         adicionarTextFields();
@@ -42,7 +43,7 @@ public class JanelaLogin extends TelaPadraoImagem {
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
                 case "Entrar":
-                    String email = tfEmail.getText();
+                    String email = tfLogin.getText();
 
                     List<Produto> produtos = (List<Produto>) gerenteController.readPessoas(Path.PRODUTOS_PATH);
                     for (Produto p : produtos) {
@@ -93,9 +94,9 @@ public class JanelaLogin extends TelaPadraoImagem {
     }
 
     public void adicionarTextFields() {
-        tfEmail = new JTextField();
-        tfEmail.setBounds(220, 120, 270, 25);
-        add(tfEmail);
+    	tfLogin = new JTextField();
+    	tfLogin.setBounds(220, 120, 270, 25);
+        add(tfLogin);
 
         pfSenha = new JPasswordField();
         pfSenha.setBounds(220, 160, 270, 25);
@@ -117,4 +118,5 @@ public class JanelaLogin extends TelaPadraoImagem {
         add(lbSenha);
 
     }
+    
 }

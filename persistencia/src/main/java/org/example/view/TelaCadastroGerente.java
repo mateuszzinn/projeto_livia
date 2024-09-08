@@ -7,28 +7,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import org.example.controller.GerenteController;
-import org.example.model.Produto;
 
-public class JanelaCadastrarCoordenador extends TelaPadraoImagem {
+public class TelaCadastroGerente extends TelaPadrao {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
     private JTextField tfNome;
-    private JTextField tfEmail;
+    private JTextField tfLogin;
     private JPasswordField pfSenha;
     private JPasswordField pfConfirmarSenha;
 
-    public JanelaCadastrarCoordenador() {
-        super("Cadastro do coordenador", "Cadastrar Coordenador");
+    public TelaCadastroGerente() {
+        super("Cadastro do Gerente", "Cadastrar Gerente");
         adicionarLabel();
         adicionarTextFields();
         adicionarBotoes();
@@ -39,15 +36,16 @@ public class JanelaCadastrarCoordenador extends TelaPadraoImagem {
 
         public void actionPerformed(ActionEvent cliqueCadastrar) {
             String nome = tfNome.getText();
-            String email = tfEmail.getText();
-            int idade = Integer.parseInt(email);
+            String login = tfLogin.getText();
+            int idade = Integer.parseInt(login);
 
             //Produto p = new Produto(nome, idade);
 
             //GerenteController.create(p);
 
             try {
-                new JanelaLogin();
+            	
+                new TelaLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -76,28 +74,34 @@ public class JanelaCadastrarCoordenador extends TelaPadraoImagem {
     }
 
     public void adicionarLabel() {
-        Font font = new Font("Georgia", Font.ITALIC, 15);
+        Font font = new Font("Georgia", Font.ITALIC, 20);
 
         JLabel lbNome = new JLabel("Nome: ");
-        lbNome.setBounds(160, 120, 100, 30);
+        lbNome.setBounds(440, 130, 100, 30);
         lbNome.setFont(font);
         lbNome.setForeground(Color.BLACK);
         add(lbNome);
 
-        JLabel lbEmail = new JLabel("E-mail: ");
-        lbEmail.setBounds(158, 170, 100, 30);
-        lbEmail.setFont(font);
-        lbEmail.setForeground(Color.BLACK);
-        add(lbEmail);
+        JLabel lbLogin = new JLabel("Login: ");
+        lbLogin.setBounds(440, 180, 100, 30);
+        lbLogin.setFont(font);
+        lbLogin.setForeground(Color.BLACK);
+        add(lbLogin);
+        
+//        JLabel lbEmail = new JLabel("E-mail: ");
+//        lbEmail.setBounds(440, 180, 100, 30);
+//        lbEmail.setFont(font);
+//        lbEmail.setForeground(Color.BLACK);
+//        add(lbEmail);
 
         JLabel lbSenha = new JLabel("Senha: ");
-        lbSenha.setBounds(320, 200, 100, 30);
+        lbSenha.setBounds(550, 220, 100, 30);
         lbSenha.setFont(font);
         lbSenha.setForeground(Color.BLACK);
         add(lbSenha);
 
         JLabel lbConfirmarSenha = new JLabel("Confirmar senha: ");
-        lbConfirmarSenha.setBounds(290, 260, 200, 30);
+        lbConfirmarSenha.setBounds(550, 290, 200, 30);
         lbConfirmarSenha.setFont(font);
         lbConfirmarSenha.setForeground(Color.BLACK);
         add(lbConfirmarSenha);
@@ -108,20 +112,20 @@ public class JanelaCadastrarCoordenador extends TelaPadraoImagem {
         OuvinteDeTecladoDoCampoNome ouvinteDoCampoNome = new OuvinteDeTecladoDoCampoNome();
 
         tfNome = new JTextField();
-        tfNome.setBounds(220, 120, 270, 25);
+        tfNome.setBounds(520, 130, 290, 30);
         tfNome.addKeyListener(ouvinteDoCampoNome);
         add(tfNome);
 
-        tfEmail = new JTextField();
-        tfEmail.setBounds(220, 170, 270, 25);
-        add(tfEmail);
+        tfLogin = new JTextField();
+        tfLogin.setBounds(520, 180, 290, 30);
+        add(tfLogin);
 
         pfSenha = new JPasswordField();
-        pfSenha.setBounds(250, 230, 200, 25);
+        pfSenha.setBounds(550, 250, 200, 30);
         add(pfSenha);
 
         pfConfirmarSenha = new JPasswordField();
-        pfConfirmarSenha.setBounds(250, 290, 200, 25);
+        pfConfirmarSenha.setBounds(550, 320, 200, 30);
         add(pfConfirmarSenha);
     }
 
@@ -129,9 +133,12 @@ public class JanelaCadastrarCoordenador extends TelaPadraoImagem {
         OuvinteCadastrarCoordenador ouvinteDoBotaoCadastrar = new OuvinteCadastrarCoordenador();
 
         JButton btCadastar = new JButton("Cadastrar");
-        btCadastar.setBounds(450, 340, 100, 30);
+        btCadastar.setBounds(560, 400, 150, 50);
         btCadastar.addActionListener(ouvinteDoBotaoCadastrar);
         add(btCadastar);
     }
 
+	public static void main(String[] args) {
+		new TelaCadastroGerente();
+	}
 }
