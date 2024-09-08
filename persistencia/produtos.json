@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 [
   {
     "codigo": 24,
@@ -43,6 +43,3 @@
     "valorUnitarioVenda": 0.0
   }
 ]
-=======
-[{"codigo":24,"nome":"Banana","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":11,"nome":"chocolate","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":1,"nome":"fejão","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":3,"nome":"tomate","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":4,"nome":"uva","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":2,"nome":"pera","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0},{"codigo":800,"nome":"coca cola","unidade":0,"valorUnitario":0.0,"valorUnitarioVenda":0.0}]
->>>>>>> Stashed changes
