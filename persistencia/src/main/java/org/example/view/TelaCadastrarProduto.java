@@ -30,6 +30,11 @@ public class TelaCadastrarProduto extends TelaPadrao{
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "Cadastrar":
+				String nome = tfNome.getText();
+				String codigo = tfCodigo.getText();
+				
+				
+				
 
 				
 				break;
