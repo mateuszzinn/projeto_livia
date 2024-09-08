@@ -1,35 +1,26 @@
-package org.example.controller;
+package org.example.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.Almoxerife;
-import org.example.model.MetodosGerenteAlmoxerife;
-import org.example.model.Produto;
 import org.example.utils.paths.Path;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
+public class MetodosGerenteCaixa {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
-    // 1- Fazer login
-    public boolean fazerLogin(Almoxerife almoxerife) throws IOException {
-        List<Almoxerife> lista =  lerArquivoAlmoxerife();
-
-        if (lista == null) {
-            lista = new ArrayList<>();
+    // Método para ler todas as pessoas do arquivo JSON GERENTE
+    public List<Gerente> lerArquivoGerente() {
+        try {
+            return objectMapper.readValue(new File(Path.GERENTE_PATH), new TypeReference<List<Gerente>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-
-        for(Almoxerife a : lista){
-            if(a.getLogin().equals(almoxerife.getLogin()) && a.getSenha().equals(almoxerife.getSenha())){
-                return true;
-            }
-        }
-        return false;
     }
 
     // Método para ler todas as pessoas do arquivo JSON ALMOXERIFE
@@ -43,10 +34,32 @@ public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
         }
     }
 
+    // Método para ler todas as pessoas do arquivo JSON CAIXA ELETRÔNICO
+    public List<CaixaEletronico> lerArquivoCaixaEletronico() {
+        try {
+            return objectMapper.readValue(new File(Path.CAIXA_PATH), new TypeReference<List<CaixaEletronico>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // Método para ler todas as pessoas do arquivo JSON PRODUTO
     public List<Produto> lerArquivoProduto() {
         try {
             return objectMapper.readValue(new File(Path.PRODUTOS_PATH), new TypeReference<List<Produto>>() {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // Método para ler todas as pessoas do arquivo JSON CLIENTE
+    public List<Cliente> lerArquivoCliente() {
+        try {
+            return objectMapper.readValue(new File(Path.PRODUTOS_PATH), new TypeReference<List<Cliente>>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,3 +90,4 @@ public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
         return false;
     }
 }
+

@@ -15,12 +15,11 @@ public class Produto {
     @JsonProperty("valorUnitarioVenda")
     private double valorUnitarioVenda;
 
-    public Produto(int codigo, String nome, int unidade, double valorUnitario, double valorUnitarioVenda) {
+    public Produto(int codigo, String nome, int unidade, double valorUnitario) {
         this.codigo = codigo;
         this.nome = nome;
         this.unidade = unidade;
         this.valorUnitario = valorUnitario;
-        this.valorUnitarioVenda = valorUnitarioVenda;
     }
 
     public Produto() {

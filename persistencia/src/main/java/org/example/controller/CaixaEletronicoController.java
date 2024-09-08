@@ -1,4 +1,8 @@
 package org.example.controller;
 
-public class CaixaEletronicoController {
+import org.example.model.MetodosGerenteCaixa;
+
+public class CaixaEletronicoController extends MetodosGerenteCaixa {
+
+
 }
