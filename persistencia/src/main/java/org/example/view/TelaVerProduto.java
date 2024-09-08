@@ -33,9 +33,8 @@ public class TelaVerProduto extends TelaPadrao {
 				dispose();
 				break;
 
-			case "Editar Perfil":
 
-			case "Editar Valor de Venda":
+			case "Editar valor de Venda":
 				String var = JOptionPane.showInputDialog("Digite o Valor de venda");
 				try {
 					double valor = Double.parseDouble(var);
@@ -90,7 +89,7 @@ public class TelaVerProduto extends TelaPadrao {
 		// Ouvinte interno
 		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
 
-		JButton btEditar = new JButton("Editar valor de Venda ");
+		JButton btEditar = new JButton("Editar valor de Venda");
 		btEditar.setBounds(440, 400, 160, 30);
 		btEditar.addActionListener(ouvinte);
 		add(btEditar);
