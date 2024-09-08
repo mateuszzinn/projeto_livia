@@ -42,5 +42,4 @@ bin/
 out/
 .idea/
 .vscode/
-*.json
 *.iml
