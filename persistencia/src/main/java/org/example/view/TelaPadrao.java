@@ -20,7 +20,7 @@ public class TelaPadrao extends JFrame {
         getContentPane().setBackground(minhaCor);
         
         JLabel lbTitulo = new JLabel(tituloPadrao);
-        lbTitulo.setBounds(180, 50, 900, 30);
+        lbTitulo.setBounds(180, 50, 900, 50);
         lbTitulo.setFont(new Font("Georgia", Font.BOLD | Font.ITALIC, 40));
         lbTitulo.setHorizontalAlignment(JLabel.CENTER);
         add(lbTitulo);

@@ -6,15 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class TelaCadastroGerente extends TelaPadrao {
+public class TelaCadastrarUsuario extends TelaPadrao {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNome;
@@ -24,31 +25,33 @@ public class TelaCadastroGerente extends TelaPadrao {
 	private JPasswordField pfSenha;
 	private JPasswordField pfConfirmarSenha;
 
-	public TelaCadastroGerente() {
-		super("Cadastro do Gerente", "Cadastrar Gerente");
+	public TelaCadastrarUsuario() {
+		super("Cadastrar Usuário", "Cadastrar Usuário");
 		adicionarLabel();
 		adicionarTextFields();
 		adicionarBotoes();
 		setVisible(true);
 	}
 
-	private class OuvinteCadastrarCoordenador implements ActionListener {
+	private class OuvinteCadastrarUsuario implements ActionListener {
 
-		public void actionPerformed(ActionEvent cliqueCadastrar) {
-			String nome = tfNome.getText();
-			String login = tfLogin.getText();
-			int idade = Integer.parseInt(login);
+		public void actionPerformed(ActionEvent e) {
+			switch (e.getActionCommand()) {
+			case "Cadastrar":
 
-			// Produto p = new Produto(nome, idade);
+				String nome = tfNome.getText();
+				String login = tfLogin.getText();
+				int idade = Integer.parseInt(login);
 
-			// GerenteController.create(p);
+				
+				break;
+			case "Voltar":
+				new TelaMenuGerente();
+				dispose();
+				break;
 
-			new TelaLogin();
-
-			dispose();
-
+			}
 		}
-
 	}
 
 	// So permite ser digitado letra
@@ -84,17 +87,17 @@ public class TelaCadastroGerente extends TelaPadrao {
 		lbLogin.setForeground(Color.BLACK);
 		add(lbLogin);
 
-        JLabel lbEmail = new JLabel("E-mail: ");
-        lbEmail.setBounds(440, 230, 100, 30);
-        lbEmail.setFont(font);
-        lbEmail.setForeground(Color.BLACK);
-        add(lbEmail);
+		JLabel lbEmail = new JLabel("E-mail: ");
+		lbEmail.setBounds(440, 230, 100, 30);
+		lbEmail.setFont(font);
+		lbEmail.setForeground(Color.BLACK);
+		add(lbEmail);
 
-        JLabel lbNis = new JLabel("NIS/PIS: ");
-        lbNis.setBounds(440, 280, 100, 30);
-        lbNis.setFont(font);
-        lbNis.setForeground(Color.BLACK);
-        add(lbNis);
+		JLabel lbNis = new JLabel("NIS/PIS: ");
+		lbNis.setBounds(440, 280, 100, 30);
+		lbNis.setFont(font);
+		lbNis.setForeground(Color.BLACK);
+		add(lbNis);
 
 		JLabel lbSenha = new JLabel("Senha: ");
 		lbSenha.setBounds(530, 330, 100, 30);
@@ -125,11 +128,11 @@ public class TelaCadastroGerente extends TelaPadrao {
 		tfEmail = new JTextField();
 		tfEmail.setBounds(530, 230, 290, 30);
 		add(tfEmail);
-		
+
 		tfNIS = new JTextField();
 		tfNIS.setBounds(530, 280, 290, 30);
 		add(tfNIS);
-	
+
 		pfSenha = new JPasswordField();
 		pfSenha.setBounds(530, 365, 200, 30);
 		add(pfSenha);
@@ -140,15 +143,20 @@ public class TelaCadastroGerente extends TelaPadrao {
 	}
 
 	public void adicionarBotoes() {
-		OuvinteCadastrarCoordenador ouvinteDoBotaoCadastrar = new OuvinteCadastrarCoordenador();
+		OuvinteCadastrarUsuario ouvinteDoBotaoCadastrar = new OuvinteCadastrarUsuario();
 
 		JButton btCadastar = new JButton("Cadastrar");
-		btCadastar.setBounds(560, 500, 150, 40);
+		btCadastar.setBounds(440, 500, 150, 40);
 		btCadastar.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btCadastar);
+		
+		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setBounds(670, 500, 150, 40);
+		btVoltar.addActionListener(ouvinteDoBotaoCadastrar);
+		add(btVoltar);
 	}
 
 	public static void main(String[] args) {
-		new TelaCadastroGerente();
+		new TelaCadastrarUsuario();
 	}
 }

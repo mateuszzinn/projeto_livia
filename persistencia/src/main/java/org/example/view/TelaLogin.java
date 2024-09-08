@@ -3,47 +3,36 @@ package org.example.view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import org.example.controller.GerenteController;
-import org.example.model.Produto;
-import org.example.utils.paths.Path;
-
 
 public class TelaLogin extends TelaPadrao {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-    private JTextField tfLogin;
-    private JPasswordField pfSenha;
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField tfLogin;
+	private JPasswordField pfSenha;
 
-    public TelaLogin() throws IOException {
-        super("Fazer Login", "Fazer Login");
-        adicionarLabel();
-        adicionarTextFields();
-        adicionarBotoes();
-        setVisible(true);
-    }
+	public TelaLogin() {
+		super("Fazer Login", "Fazer Login");
+		adicionarLabel();
+		adicionarTextFields();
+		adicionarBotoes();
+		setVisible(true);
+	}
 
-    private class OuvinteDosBotoes implements ActionListener {
+	private class OuvinteDosBotoes implements ActionListener {
 
-        GerenteController gerenteController = new GerenteController();
+		GerenteController gerenteController = new GerenteController();
 
-        private OuvinteDosBotoes() throws IOException {
-        }
+		public void actionPerformed(ActionEvent e) {
 
-        public void actionPerformed(ActionEvent e) {
-            switch (e.getActionCommand()) {
-                case "Entrar":
-                    String email = tfLogin.getText();
+			String email = tfLogin.getText();
 
 //                    List<Produto> produtos = (List<Produto>) gerenteController.(Path.PRODUTOS_PATH);
 //                    for (Produto p : produtos) {
@@ -53,70 +42,52 @@ public class TelaLogin extends TelaPadrao {
 //                            break;
 //                        }
 //                    }
-                    System.out.println("user not");
+			System.out.println("user not");
 
-                    dispose();
-                    break;
+			dispose();
 
+		}
+	}
 
-                case "Recuperar senha":
+	public void adicionarBotoes() {
+		// Ouvinte interno
+		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
 
-                    break;
+		JButton btSalvar = new JButton("Entrar");
+		btSalvar.setBounds(590, 330, 110, 40);
+		btSalvar.addActionListener(ouvinte);
+		add(btSalvar);
 
-                case "Nova Conta":
-                    break;
+	}
 
-            }
+	public void adicionarTextFields() {
+		tfLogin = new JTextField();
+		tfLogin.setBounds(530, 140, 270, 30);
+		add(tfLogin);
 
-        }
-    }
+		pfSenha = new JPasswordField();
+		pfSenha.setBounds(530, 190, 270, 30);
+		add(pfSenha);
 
+	}
 
-    public void adicionarBotoes() throws IOException {
-        //Ouvinte interno
-        OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
+	public void adicionarLabel() {
+		Font font = new Font("Georgia", Font.ITALIC, 20);
 
-        JButton btSalvar = new JButton("Entrar");
-        btSalvar.setBounds(400, 330, 100, 30);
-        btSalvar.addActionListener(ouvinte);
-        add(btSalvar);
+		JLabel lbLogin = new JLabel("Login: ");
+		lbLogin.setBounds(460, 140, 100, 30);
+		lbLogin.setFont(font);
+		add(lbLogin);
 
-        JButton btRecuperarSenha = new JButton("Recuperar senha");
-        btRecuperarSenha.setBounds(220, 205, 140, 20);
-        btRecuperarSenha.addActionListener(ouvinte);
-        add(btRecuperarSenha);
+		JLabel lbSenha = new JLabel("Senha: ");
+		lbSenha.setBounds(460, 190, 100, 30);
+		lbSenha.setFont(font);
+		add(lbSenha);
 
-        JButton btNovaConta = new JButton("Nova Conta");
-        btNovaConta.setBounds(220, 230, 100, 20);
-        btNovaConta.addActionListener(ouvinte);
-        add(btNovaConta);
+	}
 
-    }
+	public static void main(String[] args) {
+		new TelaLogin();
+	}
 
-    public void adicionarTextFields() {
-    	tfLogin = new JTextField();
-    	tfLogin.setBounds(220, 120, 270, 25);
-        add(tfLogin);
-
-        pfSenha = new JPasswordField();
-        pfSenha.setBounds(220, 160, 270, 25);
-        add(pfSenha);
-
-    }
-
-    public void adicionarLabel() {
-        Font font = new Font("Georgia", Font.ITALIC, 15);
-
-        JLabel lbEmail = new JLabel("E-mail: ");
-        lbEmail.setBounds(160, 120, 100, 30);
-        lbEmail.setFont(font);
-        add(lbEmail);
-
-        JLabel lbSenha = new JLabel("Senha: ");
-        lbSenha.setBounds(158, 160, 100, 30);
-        lbSenha.setFont(font);
-        add(lbSenha);
-
-    }
-    
 }
