@@ -9,14 +9,18 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class TelaCadastrarProduto extends TelaPadrao{
+import org.example.controller.GerenteController;
+import org.example.model.Gerente;
+import org.example.model.Produto;
 
-	
+public class TelaCadastrarProduto extends TelaPadrao {
+
 	private JTextField tfNome;
 	private JTextField tfCodigo;
-	
+
 	public TelaCadastrarProduto() {
 		super("Cadastrar Produto", "Cadastrar Produto");
 		adicionarLabel();
@@ -24,19 +28,20 @@ public class TelaCadastrarProduto extends TelaPadrao{
 		adicionarBotoes();
 		setVisible(true);
 	}
-	
+
 	private class OuvinteCadastrarProduto implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "Cadastrar":
 				String nome = tfNome.getText();
-				String codigo = tfCodigo.getText();
-				
-				
-				
+				int codigo = Integer.parseInt(tfCodigo.getText());
 
-				
+				new GerenteController().cadastrarProduto(new Produto(codigo, nome, 0, 0, 0));
+				JOptionPane.showMessageDialog(null, "Produto Cadastrado!");
+
+				dispose();
+				new TelaCadastrarProduto();
 				break;
 			case "Voltar":
 				new TelaMenuGerente();
@@ -80,7 +85,6 @@ public class TelaCadastrarProduto extends TelaPadrao{
 		lbLogin.setForeground(Color.BLACK);
 		add(lbLogin);
 
-		
 	}
 
 	public void adicionarTextFields() {
@@ -96,7 +100,6 @@ public class TelaCadastrarProduto extends TelaPadrao{
 		tfCodigo.setBounds(530, 180, 290, 30);
 		add(tfCodigo);
 
-
 	}
 
 	public void adicionarBotoes() {
@@ -106,7 +109,7 @@ public class TelaCadastrarProduto extends TelaPadrao{
 		btCadastar.setBounds(440, 500, 150, 40);
 		btCadastar.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btCadastar);
-		
+
 		JButton btVoltar = new JButton("Voltar");
 		btVoltar.setBounds(670, 500, 150, 40);
 		btVoltar.addActionListener(ouvinteDoBotaoCadastrar);
