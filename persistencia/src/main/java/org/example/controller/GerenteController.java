@@ -3,8 +3,6 @@ package org.example.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.Almoxerife;
-import org.example.model.CaixaEletronico;
 import org.example.model.Gerente;
 import org.example.model.Produto;
 import org.example.utils.paths.Path;

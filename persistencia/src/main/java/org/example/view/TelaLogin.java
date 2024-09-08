@@ -45,14 +45,14 @@ public class TelaLogin extends TelaPadrao {
                 case "Entrar":
                     String email = tfLogin.getText();
 
-                    List<Produto> produtos = (List<Produto>) gerenteController.readPessoas(Path.PRODUTOS_PATH);
-                    for (Produto p : produtos) {
-                        if (p.getNome().equals(email)) {
-                            System.out.println("Menu");
-                            dispose();
-                            break;
-                        }
-                    }
+//                    List<Produto> produtos = (List<Produto>) gerenteController.(Path.PRODUTOS_PATH);
+//                    for (Produto p : produtos) {
+//                        if (p.getNome().equals(email)) {
+//                            System.out.println("Menu");
+//                            dispose();
+//                            break;
+//                        }
+//                    }
                     System.out.println("user not");
 
                     dispose();
