@@ -37,7 +37,7 @@ public class TelaCadastrarProduto extends TelaPadrao {
 				String nome = tfNome.getText();
 				int codigo = Integer.parseInt(tfCodigo.getText());
 
-				new GerenteController().cadastrarProduto(new Produto(codigo, nome, 0, 0, 0));
+				new GerenteController().cadastrarProduto(new Produto(codigo, nome, 0, 0));
 				JOptionPane.showMessageDialog(null, "Produto Cadastrado!");
 
 				dispose();
