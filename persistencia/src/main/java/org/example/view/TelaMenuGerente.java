@@ -76,8 +76,5 @@ public class TelaMenuGerente extends TelaPadrao {
 		add(btSair);
 	}
 	
-	public static void main(String[] args) {
-		new TelaMenuGerente();
-	}
 
 }

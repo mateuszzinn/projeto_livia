@@ -6,10 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import org.example.controller.GerenteController;
+import org.example.model.Gerente;
 
 public class TelaCadastroGerente extends TelaPadrao {
 
@@ -32,19 +37,24 @@ public class TelaCadastroGerente extends TelaPadrao {
 		setVisible(true);
 	}
 
-	private class OuvinteCadastrarCoordenador implements ActionListener {
+	private class OuvinteCadastrarGerente implements ActionListener {
 
 		public void actionPerformed(ActionEvent cliqueCadastrar) {
 			String nome = tfNome.getText();
 			String login = tfLogin.getText();
-			int idade = Integer.parseInt(login);
+			String email = tfEmail.getText();
+			int nis = Integer.parseInt(tfNIS.getText());
+			String senha = new String(pfSenha.getPassword());
+			String cfSenha = new String(pfConfirmarSenha.getPassword());
 
-			// Produto p = new Produto(nome, idade);
-
-			// GerenteController.create(p);
-
+			
+			try {
+				new GerenteController().cadastrarGerente(
+						new Gerente(nome, login, senha, email, nis));
+			} catch (IOException e) {
+				e.printStackTrace();
+			};
 			new TelaLogin();
-
 			dispose();
 
 		}
@@ -140,7 +150,7 @@ public class TelaCadastroGerente extends TelaPadrao {
 	}
 
 	public void adicionarBotoes() {
-		OuvinteCadastrarCoordenador ouvinteDoBotaoCadastrar = new OuvinteCadastrarCoordenador();
+		OuvinteCadastrarGerente ouvinteDoBotaoCadastrar = new OuvinteCadastrarGerente();
 
 		JButton btCadastar = new JButton("Cadastrar");
 		btCadastar.setBounds(560, 500, 150, 40);
@@ -148,7 +158,4 @@ public class TelaCadastroGerente extends TelaPadrao {
 		add(btCadastar);
 	}
 
-	public static void main(String[] args) {
-		new TelaCadastroGerente();
-	}
 }

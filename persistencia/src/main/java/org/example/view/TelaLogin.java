@@ -3,11 +3,16 @@ package org.example.view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import org.example.controller.CaixaEletronicoController;
 import org.example.controller.GerenteController;
+import org.example.model.Gerente;
 
 public class TelaLogin extends TelaPadrao {
 
@@ -29,22 +34,23 @@ public class TelaLogin extends TelaPadrao {
 	private class OuvinteDosBotoes implements ActionListener {
 
 		GerenteController gerenteController = new GerenteController();
-
+		
 		public void actionPerformed(ActionEvent e) {
-
-			String email = tfLogin.getText();
-
-//                    List<Produto> produtos = (List<Produto>) gerenteController.(Path.PRODUTOS_PATH);
-//                    for (Produto p : produtos) {
-//                        if (p.getNome().equals(email)) {
-//                            System.out.println("Menu");
-//                            dispose();
-//                            break;
-//                        }
-//                    }
-			System.out.println("user not");
-
-			dispose();
+			String login = tfLogin.getText();
+			String senha = new String(pfSenha.getPassword());
+			
+			try {
+				if(gerenteController.fazerLogin(new Gerente("Zezão", login, senha))) {
+					new TelaMenuGerente();
+					dispose();
+				} else {
+					
+				}
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 		}
 	}
@@ -85,9 +91,5 @@ public class TelaLogin extends TelaPadrao {
 		add(lbSenha);
 
 	}
-
-	public static void main(String[] args) {
-		new TelaLogin();
-	}
-
+	
 }

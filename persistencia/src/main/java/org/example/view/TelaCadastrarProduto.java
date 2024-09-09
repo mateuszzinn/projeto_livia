@@ -116,8 +116,4 @@ public class TelaCadastrarProduto extends TelaPadrao {
 		add(btVoltar);
 	}
 
-	public static void main(String[] args) {
-		new TelaCadastrarProduto();
-	}
-
 }

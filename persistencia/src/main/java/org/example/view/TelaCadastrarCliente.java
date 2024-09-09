@@ -6,38 +6,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import org.example.controller.GerenteController;
-import org.example.model.Almoxerife;
-import org.example.model.CaixaEletronico;
+import org.example.model.Cliente;
 import org.example.model.Usuario;
 
-public class TelaCadastrarUsuario extends TelaPadrao {
+public class TelaCadastrarCliente extends TelaPadrao {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private String usuario;
+
 	private JTextField tfNome;
-	private JTextField tfLogin;
+	private JTextField tfCPF;
 	private JTextField tfEmail;
-	private JTextField tfNIS;
-	private JPasswordField pfSenha;
-	private JPasswordField pfConfirmarSenha;
+	private JTextField tfEndereco;
+
 	private JComboBox<Usuario> cbUsuario;
 
-	public TelaCadastrarUsuario() {
-		super("Cadastrar Usuário", "Cadastrar Usuário");
+	public TelaCadastrarCliente(String usuario) {
+		super("Cadastrar Cliente", "Cadastrar Cliente");
+		this.usuario = usuario;
 		adicionarLabel();
 		adicionarTextFields();
 		adicionarBotoes();
-		adicionarCombo();
 		setVisible(true);
 	}
 
@@ -47,40 +48,29 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 			switch (e.getActionCommand()) {
 			case "Cadastrar":
 				GerenteController gerenteController = new GerenteController();
-				
-				
+
 				String nome = tfNome.getText();
-				String login = tfLogin.getText();
-				int nis = Integer.parseInt(tfNIS.getText());
+				int cpf = Integer.parseInt(tfCPF.getText());
 				String email = tfEmail.getText();
-				String senha = new String(pfSenha.getPassword());
-				String cfSenha = new String(pfConfirmarSenha.getPassword());
-				
-				Usuario usuario = (Usuario) cbUsuario.getSelectedItem();
-				
-				if(usuario.equals(Usuario.Almoxerife)) {
-					gerenteController.cadastrarAlmoxerife(new Almoxerife(nome, login, senha, email, nis));
-					JOptionPane.showMessageDialog(null, "Almoxerife Cadastrado!");
-					dispose();
+				String endereco = tfEndereco.getText();
+
+				gerenteController.cadastrarCliente(new Cliente(nome, cpf, email, endereco));
+				JOptionPane.showMessageDialog(null, "Cliente Cadastrado!");
+
+				if (getUsuario().equals("Gerente")) {
 					new TelaCadastrarUsuario();
-				} else if(usuario.equals(Usuario.Caixa_Eletronico)) {
-					gerenteController.cadastrarCaixaEletronico(new CaixaEletronico(nome, login, senha, email, nis));
-					JOptionPane.showMessageDialog(null, "Caixa Eletronico Cadastrado!");
 					dispose();
-					new TelaCadastrarUsuario();
+					// falta criar para as outras
 				}
 				break;
-				
-			case "Cadastrar Cliente":
-				new TelaCadastrarCliente("Gerente");
-				dispose();
-				break;
 			case "Voltar":
-				new TelaMenuGerente();
-				dispose();
+				if (getUsuario().equals("Gerente")) {
+					new TelaCadastrarUsuario();
+					dispose();
+				} // falta criar para as outras
+
 				break;
 
-				
 			}
 		}
 	}
@@ -103,15 +93,6 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 
 	}
 
-	public void adicionarCombo() {
-
-		Usuario[] usuarios = { Usuario.Almoxerife, Usuario.Caixa_Eletronico };
-		cbUsuario = new JComboBox<Usuario>(usuarios);
-		cbUsuario.setBounds(440, 330, 150, 30);
-		add(cbUsuario);
-
-	}
-
 	public void adicionarLabel() {
 		Font font = new Font("Georgia", Font.ITALIC, 20);
 
@@ -121,7 +102,7 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 		lbNome.setForeground(Color.BLACK);
 		add(lbNome);
 
-		JLabel lbLogin = new JLabel("Login: ");
+		JLabel lbLogin = new JLabel("CPF: ");
 		lbLogin.setBounds(440, 180, 100, 30);
 		lbLogin.setFont(font);
 		lbLogin.setForeground(Color.BLACK);
@@ -133,23 +114,12 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 		lbEmail.setForeground(Color.BLACK);
 		add(lbEmail);
 
-		JLabel lbNis = new JLabel("NIS/PIS: ");
+		JLabel lbNis = new JLabel("Endereço: ");
 		lbNis.setBounds(440, 280, 100, 30);
 		lbNis.setFont(font);
 		lbNis.setForeground(Color.BLACK);
 		add(lbNis);
 
-		JLabel lbSenha = new JLabel("Senha: ");
-		lbSenha.setBounds(620, 330, 100, 30);
-		lbSenha.setFont(font);
-		lbSenha.setForeground(Color.BLACK);
-		add(lbSenha);
-
-		JLabel lbConfirmarSenha = new JLabel("Confirmar senha: ");
-		lbConfirmarSenha.setBounds(620, 400, 200, 30);
-		lbConfirmarSenha.setFont(font);
-		lbConfirmarSenha.setForeground(Color.BLACK);
-		add(lbConfirmarSenha);
 	}
 
 	public void adicionarTextFields() {
@@ -161,25 +131,18 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 		tfNome.addKeyListener(ouvinteDoCampoNome);
 		add(tfNome);
 
-		tfLogin = new JTextField();
-		tfLogin.setBounds(530, 180, 290, 30);
-		add(tfLogin);
+		tfCPF = new JTextField();
+		tfCPF.setBounds(530, 180, 290, 30);
+		add(tfCPF);
 
 		tfEmail = new JTextField();
 		tfEmail.setBounds(530, 230, 290, 30);
 		add(tfEmail);
 
-		tfNIS = new JTextField();
-		tfNIS.setBounds(530, 280, 290, 30);
-		add(tfNIS);
+		tfEndereco = new JTextField();
+		tfEndereco.setBounds(530, 280, 290, 30);
+		add(tfEndereco);
 
-		pfSenha = new JPasswordField();
-		pfSenha.setBounds(620, 365, 200, 30);
-		add(pfSenha);
-
-		pfConfirmarSenha = new JPasswordField();
-		pfConfirmarSenha.setBounds(620, 435, 200, 30);
-		add(pfConfirmarSenha);
 	}
 
 	public void adicionarBotoes() {
@@ -189,17 +152,15 @@ public class TelaCadastrarUsuario extends TelaPadrao {
 		btCadastar.setBounds(440, 500, 150, 40);
 		btCadastar.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btCadastar);
-		
-		
-		JButton btCadastarCliente = new JButton("Cadastrar Cliente");
-		btCadastarCliente.setBounds(560, 570, 150, 40);
-		btCadastarCliente.addActionListener(ouvinteDoBotaoCadastrar);
-		add(btCadastarCliente);
 
 		JButton btVoltar = new JButton("Voltar");
 		btVoltar.setBounds(670, 500, 150, 40);
 		btVoltar.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btVoltar);
+	}
+
+	public String getUsuario() {
+		return usuario;
 	}
 
 }
