@@ -1,7 +1,5 @@
 package org.example.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.*;
 import org.example.utils.paths.Path;
@@ -44,7 +42,6 @@ public class GerenteController extends MetodosGerenteAlmoxerife {
         return false;
     }
 
-
     // 3- Cadastro de almoxerife
     public void cadastrarAlmoxerife(Almoxerife almoxerife){
         criarArquivo(Path.ALMOXERIFE_PATH);
@@ -70,8 +67,6 @@ public class GerenteController extends MetodosGerenteAlmoxerife {
         escreverNoArquivo(Path.CAIXA_PATH, lista);
     }
 
-
-
     // 8- Registrar valor unitário de venda de produto
     public void registrarValorDeVenda(int codigo, double valorDeVenda){
         List<Produto> lista = lerArquivoProduto();
@@ -88,38 +83,4 @@ public class GerenteController extends MetodosGerenteAlmoxerife {
 
     // 11- Gerar relatório de balanço mensal
 
-
-
-    /*
-
-
-
-    // Método para realizar a atualização de uma pessoa
-    public void update(String nome, Produto atualizacao) {
-        List<Produto> produtos = (List<Produto>) readPessoas(Path.PRODUTOS_PATH);
-
-        if (produtos != null) {
-            for (int i = 0; i < produtos.size(); i++) {
-                if (produtos.get(i).getNome().equalsIgnoreCase(nome)) {
-                    produtos.set(i, atualizacao);
-                    writePessoas(produtos);
-                    System.out.println("Pessoa atualizada");
-                    return;
-                }
-            }
-            System.out.println("Pessoa não encontrada");
-        }
-    }
-
-    public void delete(String nome) {
-        List<Produto> produtos = (List<Produto>) readPessoas(Path.PRODUTOS_PATH);
-
-        if (produtos != null) {
-            produtos.removeIf(produto -> produto.getNome().equalsIgnoreCase(nome));
-            writePessoas(produtos);
-            System.out.println("Pessoa removida com sucesso");
-        }
-    }
-
-    */
 }
