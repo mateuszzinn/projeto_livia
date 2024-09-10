@@ -80,8 +80,8 @@ public class GerenteController extends MetodosGerenteAlmoxerife {
     }
 
     // 10- Enviar email com cupom de desconto
-    public void enviarEmailComCupomDeDesconto(){
-
+    public void enviarEmailComCupomDeDesconto(String nome, int codigo){
+    	// se lembre de cadastrar
     }
     // 11- Gerar relatório de balanço mensal
     public void gerarRelatorioBalancoMensal(){
