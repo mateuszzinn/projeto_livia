@@ -32,6 +32,23 @@ public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
         return false;
     }
 
+    // Registrar entrada de produto no estoque
+    public void registrarEntrada(){
+
+    }
+
+    // 8- Registrar valor unitário de compra de produto
+    public void registrarValorDeCompra(int codigo, double valorDeVenda){
+        List<Produto> lista = lerArquivoProduto();
+
+        for (Produto produto : lista){
+            if(produto.getCodigo() == codigo){
+                produto.setValorUnitarioVenda(valorDeVenda);
+            }
+        }
+        escreverNoArquivo(Path.PRODUTOS_PATH, lista);
+    }
+
     // Método para ler todas as pessoas do arquivo JSON ALMOXERIFE
     public List<Almoxerife> lerArquivoAlmoxerife() {
         try {
@@ -40,26 +57,6 @@ public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    // Método para ler todas as pessoas do arquivo JSON PRODUTO
-    public List<Produto> lerArquivoProduto() {
-        try {
-            return objectMapper.readValue(new File(Path.PRODUTOS_PATH), new TypeReference<List<Produto>>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    // Método para escrever a lista de pessoas no arquivo JSON
-    public void escreverNoArquivo(String path, List<?> list) {
-        try {
-            objectMapper.writeValue(new File(path), list);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

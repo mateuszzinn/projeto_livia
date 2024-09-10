@@ -6,11 +6,25 @@ import org.example.utils.paths.Path;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MetodosGerenteCaixa {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
+
+    // 9- Cadastro de cliente
+    public void cadastrarCliente(Cliente cliente) {
+        criarArquivo(Path.CLIENTE_PATH);
+        List<Cliente> lista = lerArquivoCliente();
+
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
+
+        lista.add(cliente);
+        escreverNoArquivo(Path.CLIENTE_PATH, lista);
+    }
 
     // Método para ler todas as pessoas do arquivo JSON GERENTE
     public List<Gerente> lerArquivoGerente() {
