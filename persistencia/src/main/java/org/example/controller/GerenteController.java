@@ -2,6 +2,7 @@ package org.example.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.*;
+import org.example.utils.email.GmailEmailSender;
 import org.example.utils.paths.Path;
 
 import java.io.File;
@@ -81,11 +82,16 @@ public class GerenteController extends MetodosGerenteAlmoxerife {
 
     // 10- Enviar email com cupom de desconto
     public void enviarEmailComCupomDeDesconto(String nome, int codigo){
-    	// se lembre de cadastrar
+    	List<Cliente> list = lerArquivoCliente();
+
+        for (Cliente c : list){
+            GmailEmailSender.enviarEmail(c.getEmail(), nome, codigo);
+        }
     }
     // 11- Gerar relatório de balanço mensal
     public void gerarRelatorioBalancoMensal(){
 
     }
+
 
 }

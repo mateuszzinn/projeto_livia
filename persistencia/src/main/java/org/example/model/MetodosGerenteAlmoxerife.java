@@ -126,7 +126,7 @@ public class MetodosGerenteAlmoxerife {
     // Método para ler todas as pessoas do arquivo JSON CLIENTE
     public List<Cliente> lerArquivoCliente() {
         try {
-            return objectMapper.readValue(new File(Path.PRODUTOS_PATH), new TypeReference<List<Cliente>>() {
+            return objectMapper.readValue(new File(Path.CLIENTE_PATH), new TypeReference<List<Cliente>>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
