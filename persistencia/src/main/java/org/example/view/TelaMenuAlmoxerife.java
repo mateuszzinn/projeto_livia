@@ -50,11 +50,11 @@ public class TelaMenuAlmoxerife extends TelaPadrao {
 		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
 
 		// Botão de Cadastrar Usuario
-		JButton btCadastrarEdital = new JButton("Casdastrar Cliente");
-		btCadastrarEdital.setBounds(500, 130, 250, 30);
-		btCadastrarEdital.setFont(new Font("Georgia", Font.ITALIC, 20));
-		btCadastrarEdital.addActionListener(ouvinte);
-		add(btCadastrarEdital);
+		JButton btCadastrarCliente = new JButton("Casdastrar Cliente");
+		btCadastrarCliente .setBounds(500, 130, 250, 30);
+		btCadastrarCliente .setFont(new Font("Georgia", Font.ITALIC, 20));
+		btCadastrarCliente .addActionListener(ouvinte);
+		add(btCadastrarCliente);
 
 		// Botão de Cadastrar Produto
 		JButton btCadastrarProduto = new JButton("Casdastrar Produto");

@@ -31,8 +31,6 @@ public class TelaCadastrarCliente extends TelaPadrao {
 	private JTextField tfEmail;
 	private JTextField tfEndereco;
 
-	private JComboBox<Usuario> cbUsuario;
-
 	public TelaCadastrarCliente(String usuario) {
 		super("Cadastrar Cliente", "Cadastrar Cliente");
 		this.usuario = usuario;
@@ -59,9 +57,12 @@ public class TelaCadastrarCliente extends TelaPadrao {
 
 				if (getUsuario().equals("Gerente")) {
 					new TelaCadastrarUsuario();
-					dispose();
-					// falta criar para as outras
+				} else if(getUsuario().equals("Almoxerife")) {
+					new TelaMenuAlmoxerife();
+				}else if(getUsuario().equals("Caixa Eletronico")) {
+					new TelaMenuCaixaEletronico();
 				}
+				dispose();
 				break;
 			case "Voltar":
 				if (getUsuario().equals("Gerente")) {
