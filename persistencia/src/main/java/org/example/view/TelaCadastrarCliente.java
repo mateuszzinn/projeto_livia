@@ -69,6 +69,8 @@ public class TelaCadastrarCliente extends TelaPadrao {
 					
 				} else if(getUsuario().equals("Almoxerife")) {
 					new TelaMenuAlmoxerife();
+				} else if(getUsuario().equals("Caixa Eletronico")) {
+					new TelaMenuCaixaEletronico();
 				}
 				dispose();
 				break;
