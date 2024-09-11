@@ -16,12 +16,14 @@ import org.example.model.Produto;
 
 public class TelaListarProdutos extends TelaPadrao {
 
+	private String usuario;
 	private List<Produto> produtos = new GerenteController().listarProdutos();
 	private List<Produto> listaProdutos;
 	private JTable tabela;
 
-	public TelaListarProdutos() {
+	public TelaListarProdutos(String usString) {
 		super("Listar Produtos", "Listar Produtos");
+		this.usuario = usString;
 		adicionarTabela();
 		adicionarBotoes();
 		setVisible(true);
@@ -38,13 +40,18 @@ public class TelaListarProdutos extends TelaPadrao {
 					JOptionPane.showMessageDialog(null, "Selecione um Produto!");
 				} else {
 					Produto produto = listaProdutos.get(produtoSelecionado);
-					new TelaVerProduto(produto);
+					new TelaVerProduto(produto , usuario);
 					dispose();
 				}
 				
 				break;
 			case "Voltar":
-				new TelaMenuGerente();
+				if(usuario.equals("Gerente")) {
+					new TelaMenuGerente();
+				} else if(usuario.equals("Almoxerife")) {
+					new TelaMenuAlmoxerife();
+				}
+				
 				dispose();
 				break;
 
@@ -94,5 +101,9 @@ public class TelaListarProdutos extends TelaPadrao {
 		btVer.setBounds(480, 500, 150, 40);
 		btVer.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btVer);
+	}
+
+	public String getUsuario() {
+		return usuario;
 	}
 }

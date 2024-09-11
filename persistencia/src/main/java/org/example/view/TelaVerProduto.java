@@ -9,19 +9,33 @@ import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
 
+import org.example.controller.AlmoxerifeController;
 import org.example.controller.GerenteController;
 import org.example.model.MetodosGerenteAlmoxerife;
 import org.example.model.Produto;
 
 public class TelaVerProduto extends TelaPadrao {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private String usuario;
 	private Produto produto;
 
-	public TelaVerProduto(Produto produto) {
+	public TelaVerProduto(Produto produto, String usuario) {
 		super("Detalhes do Produto", "Detalhes do Produto");
 		this.produto = produto;
+		this.usuario = usuario;
 		adicionarLabel();
+		if(usuario.equals("Gerente")) {
+			adicionarBotoesGerente();
+		}else{
+			adicionarBotoesAlmoxerife();
+		}
 		adicionarBotoes();
+		
 		setVisible(true);
 
 	}
@@ -33,14 +47,30 @@ public class TelaVerProduto extends TelaPadrao {
 
 			switch (e.getActionCommand()) {
 			case "Voltar":
-				new TelaListarProdutos();
+				new TelaListarProdutos(usuario);
+				dispose();
+				break;
+			case "Editar valor de compra":
+				String var1 = JOptionPane.showInputDialog("Digite o Valor de Compra");
+				try {
+					double valor1 = Double.parseDouble(var1);
+					AlmoxerifeController almoxerifeController = new AlmoxerifeController();
+					almoxerifeController.registrarValorDeCompra(produto.getCodigo(), valor1);
+					JOptionPane.showMessageDialog(null, "Valor alterado!");
+					produto.setValorUnitario(valor1);
+
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Não foi possivel alterar o valor!");
+				}
+
+				new TelaVerProduto(produto, usuario);
 				dispose();
 				break;
 			case "Editar Nome":
 				String nome = JOptionPane.showInputDialog("Digite o Nome do Produto!");
 				produto.setNome(nome);
 				gerenteController.editarProduto(produto.getCodigo(), produto);
-				new TelaVerProduto(produto);
+				new TelaVerProduto(produto, usuario);
 				dispose();
 				break;
 			case "Editar Codigo":
@@ -56,7 +86,7 @@ public class TelaVerProduto extends TelaPadrao {
 				} catch (Exception e2) {
 
 				}
-				new TelaVerProduto(produto);
+				new TelaVerProduto(produto, usuario);
 				dispose();
 				break;
 
@@ -70,7 +100,7 @@ public class TelaVerProduto extends TelaPadrao {
 
 				}
 
-				new TelaVerProduto(produto);
+				new TelaVerProduto(produto, usuario);
 				dispose();
 				break;
 			case "Editar valor de Venda":
@@ -86,7 +116,7 @@ public class TelaVerProduto extends TelaPadrao {
 					JOptionPane.showMessageDialog(null, "Não foi possivel alterar o valor!");
 				}
 
-				new TelaVerProduto(produto);
+				new TelaVerProduto(produto, usuario);
 
 				dispose();
 				break;
@@ -126,6 +156,26 @@ public class TelaVerProduto extends TelaPadrao {
 		add(lbSenha);
 
 	}
+	
+	public void adicionarBotoesAlmoxerife(){
+		// Ouvinte interno
+		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
+
+		JButton btEditarVarCompra = new JButton("Editar valor de compra");
+		btEditarVarCompra.setBounds(590, 450, 170, 30);
+		btEditarVarCompra.addActionListener(ouvinte);
+		add(btEditarVarCompra);
+
+	}
+	
+	public void adicionarBotoesGerente() {
+		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
+		
+		JButton btEditar = new JButton("Editar valor de Venda");
+		btEditar.setBounds(590, 450, 160, 30);
+		btEditar.addActionListener(ouvinte);
+		add(btEditar);
+	}
 
 	public void adicionarBotoes() {
 		// Ouvinte interno
@@ -156,6 +206,10 @@ public class TelaVerProduto extends TelaPadrao {
 		btVoltar.addActionListener(ouvinte);
 		add(btVoltar);
 
+	}
+
+	public String getUsuario() {
+		return usuario;
 	}
 
 }

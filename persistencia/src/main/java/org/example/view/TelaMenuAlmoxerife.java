@@ -7,15 +7,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class TelaMenuGerente extends TelaPadrao {
+
+public class TelaMenuAlmoxerife extends TelaPadrao {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public TelaMenuGerente() {
-		super("Menu Gerente", "Menu Gerente");
+	public TelaMenuAlmoxerife() {
+		super("Menu Almoxerife", "Menu Almoxerife");
 		adicionarBotoes();
 		setVisible(true);
 	}
@@ -24,24 +25,17 @@ public class TelaMenuGerente extends TelaPadrao {
 
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
-			case "Casdastrar Usuários":
-				new TelaCadastrarUsuario();
+			case "Casdastrar Cliente":
+				new TelaCadastrarCliente("Almoxerife");
 				dispose();
 				break;
 			case "Casdastrar Produto":
-				new TelaCadastrarProduto("Gerente");
+				new TelaCadastrarProduto("Almoxerife");
 				dispose();
 				break;
 			case "Listar Produtos":
-				new TelaListarProdutos("Gerente");
+				new TelaListarProdutos("Almoxerife");
 				dispose();
-				break;
-			case "Envio de Cupons":
-				new TelaCadastroCupom();
-				dispose();
-				break;
-			case "Balanço do Mês":
-				JOptionPane.showMessageDialog(null, "Balanço do Mês Gerado!");
 				break;
 			case "Sair":
 				new TelaLogin();
@@ -56,7 +50,7 @@ public class TelaMenuGerente extends TelaPadrao {
 		OuvinteDosBotoes ouvinte = new OuvinteDosBotoes();
 
 		// Botão de Cadastrar Usuario
-		JButton btCadastrarEdital = new JButton("Casdastrar Usuários");
+		JButton btCadastrarEdital = new JButton("Casdastrar Cliente");
 		btCadastrarEdital.setBounds(500, 130, 250, 30);
 		btCadastrarEdital.setFont(new Font("Georgia", Font.ITALIC, 20));
 		btCadastrarEdital.addActionListener(ouvinte);
@@ -75,18 +69,6 @@ public class TelaMenuGerente extends TelaPadrao {
 		btListarProdutos.setFont(new Font("Georgia", Font.ITALIC, 20));
 		btListarProdutos.addActionListener(ouvinte);
 		add(btListarProdutos);
-		
-		JButton btEnviarCupons = new JButton("Envio de Cupons");
-		btEnviarCupons.setBounds(500, 280, 250, 30);
-		btEnviarCupons.setFont(new Font("Georgia", Font.ITALIC, 20));
-		btEnviarCupons.addActionListener(ouvinte);
-		add(btEnviarCupons);
-		
-		JButton btBalanco = new JButton("Balanço do Mês");
-		btBalanco.setBounds(500, 330, 250, 30);
-		btBalanco.setFont(new Font("Georgia", Font.ITALIC, 20));
-		btBalanco.addActionListener(ouvinte);
-		add(btBalanco);
 
 		// Botão de Sair
 		JButton btSair = new JButton("Sair");

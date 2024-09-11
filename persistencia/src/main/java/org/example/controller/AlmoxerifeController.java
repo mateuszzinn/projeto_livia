@@ -38,12 +38,12 @@ public class AlmoxerifeController extends MetodosGerenteAlmoxerife {
     }
 
     // 8- Registrar valor unitário de compra de produto
-    public void registrarValorDeCompra(int codigo, double valorDeVenda){
+    public void registrarValorDeCompra(int codigo, double valorDeCompra){
         List<Produto> lista = lerArquivoProduto();
 
         for (Produto produto : lista){
             if(produto.getCodigo() == codigo){
-                produto.setValorUnitarioVenda(valorDeVenda);
+                produto.setValorUnitario(valorDeCompra);
             }
         }
         escreverNoArquivo(Path.PRODUTOS_PATH, lista);

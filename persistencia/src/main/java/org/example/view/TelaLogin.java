@@ -10,8 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.example.controller.AlmoxerifeController;
 import org.example.controller.CaixaEletronicoController;
 import org.example.controller.GerenteController;
+import org.example.model.Almoxerife;
+import org.example.model.CaixaEletronico;
 import org.example.model.Gerente;
 
 public class TelaLogin extends TelaPadrao {
@@ -34,19 +37,24 @@ public class TelaLogin extends TelaPadrao {
 	private class OuvinteDosBotoes implements ActionListener {
 
 		GerenteController gerenteController = new GerenteController();
+		AlmoxerifeController almoxerifeController = new AlmoxerifeController();
+		CaixaEletronicoController caixaEletronicoController = new CaixaEletronicoController();
 		
 		public void actionPerformed(ActionEvent e) {
 			String login = tfLogin.getText();
 			String senha = new String(pfSenha.getPassword());
 			
 			try {
-				if(gerenteController.fazerLogin(new Gerente("Zezão", login, senha))) {
+				if(gerenteController.fazerLogin(new Gerente("Gleison pop100", login, senha))) {
 					new TelaMenuGerente();
 					dispose();
-				} else {
-					
+				} else if(almoxerifeController.fazerLogin(new Almoxerife("Cleytinho", login, senha))) {
+					new TelaMenuAlmoxerife();
+					dispose();
+				} else if(caixaEletronicoController.fazerLogin(new CaixaEletronico("Livinha do Grau", login, senha))) {
+					new TelaMenuCaixaEletronico();
+					dispose();
 				}
-				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

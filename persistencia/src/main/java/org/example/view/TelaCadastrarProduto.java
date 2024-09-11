@@ -18,11 +18,13 @@ import org.example.model.Produto;
 
 public class TelaCadastrarProduto extends TelaPadrao {
 
+	private String usuario;
 	private JTextField tfNome;
 	private JTextField tfCodigo;
 
-	public TelaCadastrarProduto() {
+	public TelaCadastrarProduto(String usuario) {
 		super("Cadastrar Produto", "Cadastrar Produto");
+		this.usuario = usuario;
 		adicionarLabel();
 		adicionarTextFields();
 		adicionarBotoes();
@@ -41,10 +43,13 @@ public class TelaCadastrarProduto extends TelaPadrao {
 				JOptionPane.showMessageDialog(null, "Produto Cadastrado!");
 
 				dispose();
-				new TelaCadastrarProduto();
+				new TelaCadastrarProduto(usuario);
 				break;
 			case "Voltar":
-				new TelaMenuGerente();
+				if(usuario.equals("Gerente")) {
+					new TelaMenuGerente();
+				} else if(usuario.equals("Almoxerife"))
+					new TelaMenuAlmoxerife();
 				dispose();
 				break;
 
@@ -114,6 +119,10 @@ public class TelaCadastrarProduto extends TelaPadrao {
 		btVoltar.setBounds(670, 500, 150, 40);
 		btVoltar.addActionListener(ouvinteDoBotaoCadastrar);
 		add(btVoltar);
+	}
+
+	public String getUsuario() {
+		return usuario;
 	}
 
 }

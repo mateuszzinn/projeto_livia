@@ -66,9 +66,11 @@ public class TelaCadastrarCliente extends TelaPadrao {
 			case "Voltar":
 				if (getUsuario().equals("Gerente")) {
 					new TelaCadastrarUsuario();
-					dispose();
-				} // falta criar para as outras
-
+					
+				} else if(getUsuario().equals("Almoxerife")) {
+					new TelaMenuAlmoxerife();
+				}
+				dispose();
 				break;
 
 			}
